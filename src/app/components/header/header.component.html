@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="container header-content">
+    <a routerLink="/" class="logo">Sushi 75</a>
+    
+    <nav class="nav-menu">
+      <a routerLink="/menu" routerLinkActive="active">Menu</a>
+      <a routerLink="/specialites" routerLinkActive="active">Spécialités</a>
+      <a routerLink="/contact" routerLinkActive="active">Contact</a>
+    </nav>
+
+    <a [href]="'tel:' + phoneNumber" class="phone-button">
+      {{ phoneNumber }}
+    </a>
+  </div>
+</header>

@@ -1,0 +1,85 @@
+<div class="menu-page">
+  <!-- Hero Banner -->
+  <div class="hero-banner">
+    <h1 class="menu-title">Notre Carte</h1>
+  </div>
+
+  <!-- Menu Content -->
+  <div class="menu-content">
+    <div *ngIf="!selectedCategory" class="menu-sections">
+      <!-- Sushis & Sashimis Section -->
+      <section class="menu-section">
+        <h2>Sushis & Sashimis</h2>
+        <div class="menu-grid">
+          <app-category-card
+            *ngFor="let category of getSectionCategories('Sushis & Sashimis')"
+            [category]="category.title"
+            [description]="getDescription(category)"
+            [items]="category.items"
+            [imageUrl]="getImageUrl(category.id)"
+            (click)="showCategory(category.id)">
+          </app-category-card>
+        </div>
+      </section>
+
+      <!-- Entrées Section -->
+      <section class="menu-section">
+        <h2>Entrées</h2>
+        <div class="menu-grid">
+          <app-category-card
+            *ngFor="let category of getSectionCategories('Entrées')"
+            [category]="category.title"
+            [description]="getDescription(category)"
+            [items]="category.items"
+            [imageUrl]="getImageUrl(category.id)"
+            (click)="showCategory(category.id)">
+          </app-category-card>
+        </div>
+      </section>
+
+      <!-- Plats & Bowls Section -->
+      <section class="menu-section">
+        <h2>Plats & Bowls</h2>
+        <div class="menu-grid">
+          <app-category-card
+            *ngFor="let category of getSectionCategories('Plats & Bowls')"
+            [category]="category.title"
+            [description]="getDescription(category)"
+            [items]="category.items"
+            [imageUrl]="getImageUrl(category.id)"
+            (click)="showCategory(category.id)">
+          </app-category-card>
+        </div>
+      </section>
+
+      <!-- Spécialités Section -->
+      <section class="menu-section">
+        <h2>Spécialités</h2>
+        <div class="menu-grid">
+          <app-category-card
+            *ngFor="let category of getSectionCategories('Spécialités')"
+            [category]="category.title"
+            [description]="getDescription(category)"
+            [items]="category.items"
+            [imageUrl]="getImageUrl(category.id)"
+            (click)="showCategory(category.id)">
+          </app-category-card>
+        </div>
+      </section>
+    </div>
+
+    <!-- Category Details View -->
+    <div *ngIf="selectedCategory && getSelectedCategoryData()" class="category-details-container">
+      <button class="back-button" (click)="closeDetails()">
+        ← Retour au menu
+      </button>
+      <ng-container *ngIf="getSelectedCategoryData() as categoryData">
+        <app-category-details
+          [category]="categoryData.title"
+          [subtitle]="categoryData.subtitle"
+          [items]="categoryData.items">
+        </app-category-details>
+      </ng-container>
+    </div>
+  </div>
+</div>
