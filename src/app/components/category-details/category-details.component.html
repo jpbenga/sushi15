@@ -1,0 +1,50 @@
+<div class="category-details">
+  <button class="close-button" (click)="onClose()">×</button>
+  <h2>{{ category.title }}</h2>
+  @if (category.subtitle) {
+    <p class="subtitle">{{ category.subtitle }}</p>
+  }
+  @if (category.description) {
+    <p class="description">{{ category.description }}</p>
+  }
+  
+  @for (subcategory of category.subcategories | keyvalue; track subcategory.key) {
+    <div class="subcategory">
+      <h3>{{ subcategory.value.title }}</h3>
+      @if (subcategory.value.subtitle) {
+        <p class="subtitle">{{ subcategory.value.subtitle }}</p>
+      }
+      @if (subcategory.value.description) {
+        <p class="description">{{ subcategory.value.description }}</p>
+      }
+      
+      <div class="items-grid">
+        @for (item of subcategory.value.items; track item.name) {
+          <div class="item-card">
+            <img [src]="'https://dummyimage.com/200x150/000/fff&text=' + item.name" [alt]="item.name">
+            <div class="item-content">
+              <h4>{{ item.name }}</h4>
+              <p class="price">{{ item.price }}€</p>
+              @if (item.description) {
+                <p class="description">{{ item.description }}</p>
+              }
+              @if (item.pieces) {
+                <p class="pieces">{{ item.pieces }} pièces</p>
+              }
+              @if (item.items) {
+                <div class="sub-items">
+                  <p>Contenu :</p>
+                  <ul>
+                    @for (subItem of item.items; track subItem) {
+                      <li>{{ subItem }}</li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

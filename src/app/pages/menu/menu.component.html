@@ -6,80 +6,39 @@
 
   <!-- Menu Content -->
   <div class="menu-content">
-    <div *ngIf="!selectedCategory" class="menu-sections">
-      <!-- Sushis & Sashimis Section -->
-      <section class="menu-section">
-        <h2>Sushis & Sashimis</h2>
-        <div class="menu-grid">
-          <app-category-card
-            *ngFor="let category of getSectionCategories('Sushis & Sashimis')"
-            [category]="category.title"
-            [description]="getDescription(category)"
-            [items]="category.items"
-            [imageUrl]="getImageUrl(category.id)"
-            (click)="showCategory(category.id)">
-          </app-category-card>
-        </div>
-      </section>
-
-      <!-- Entrées Section -->
-      <section class="menu-section">
-        <h2>Entrées</h2>
-        <div class="menu-grid">
-          <app-category-card
-            *ngFor="let category of getSectionCategories('Entrées')"
-            [category]="category.title"
-            [description]="getDescription(category)"
-            [items]="category.items"
-            [imageUrl]="getImageUrl(category.id)"
-            (click)="showCategory(category.id)">
-          </app-category-card>
-        </div>
-      </section>
-
-      <!-- Plats & Bowls Section -->
-      <section class="menu-section">
-        <h2>Plats & Bowls</h2>
-        <div class="menu-grid">
-          <app-category-card
-            *ngFor="let category of getSectionCategories('Plats & Bowls')"
-            [category]="category.title"
-            [description]="getDescription(category)"
-            [items]="category.items"
-            [imageUrl]="getImageUrl(category.id)"
-            (click)="showCategory(category.id)">
-          </app-category-card>
-        </div>
-      </section>
-
-      <!-- Spécialités Section -->
-      <section class="menu-section">
-        <h2>Spécialités</h2>
-        <div class="menu-grid">
-          <app-category-card
-            *ngFor="let category of getSectionCategories('Spécialités')"
-            [category]="category.title"
-            [description]="getDescription(category)"
-            [items]="category.items"
-            [imageUrl]="getImageUrl(category.id)"
-            (click)="showCategory(category.id)">
-          </app-category-card>
-        </div>
-      </section>
-    </div>
+    <ng-container *ngIf="(selectedCategory$ | async) === null">
+      <div class="menu-grid">
+        <ng-container *ngIf="categories$ | async as categories">
+          <ng-container *ngFor="let category of categories">
+            <ng-container *ngFor="let subcategory of getSubcategories(category[0])">
+              <app-category-card
+                [categoryId]="category[0]"
+                [subcategoryId]="subcategory[0]"
+                [title]="subcategory[1].title"
+                [subtitle]="subcategory[1].subtitle"
+                [items]="subcategory[1].items"
+                [supplements]="subcategory[1].supplements"
+                (selected)="showSubcategory(category[0], subcategory[0])">
+              </app-category-card>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
 
     <!-- Category Details View -->
-    <div *ngIf="selectedCategory && getSelectedCategoryData()" class="category-details-container">
-      <button class="back-button" (click)="closeDetails()">
-        ← Retour au menu
-      </button>
-      <ng-container *ngIf="getSelectedCategoryData() as categoryData">
-        <app-category-details
-          [category]="categoryData.title"
-          [subtitle]="categoryData.subtitle"
-          [items]="categoryData.items">
-        </app-category-details>
-      </ng-container>
-    </div>
+    <ng-container *ngIf="selectedCategory$ | async as selectedCategoryId">
+      <div class="category-details-container">
+        <button class="back-button" (click)="closeDetails()">
+          ← Retour au menu
+        </button>
+        <ng-container *ngIf="getSelectedCategoryDetails(selectedCategoryId) as categoryData">
+          <app-category-details
+            [category]="categoryData"
+            (close)="closeDetails()">
+          </app-category-details>
+        </ng-container>
+      </div>
+    </ng-container>
   </div>
 </div>

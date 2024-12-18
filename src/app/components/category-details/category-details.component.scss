@@ -1,0 +1,145 @@
+.category-details {
+  padding: 20px;
+  position: relative;
+  
+  .close-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: #333;
+  }
+
+  h3 {
+    text-align: center;
+    margin: 30px 0 10px;
+    font-size: 24px;
+    color: #333;
+  }
+
+  h4 {
+    margin: 0 0 8px;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #666;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+
+  .description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 30px;
+  }
+
+  .subcategory {
+    margin-bottom: 40px;
+  }
+
+  .items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+
+  .item-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .item-content {
+      padding: 16px;
+    }
+
+    h4 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .price {
+      font-size: 18px;
+      color: #e44d26;
+      font-weight: bold;
+      margin: 8px 0;
+    }
+
+    .description {
+      color: #666;
+      font-size: 14px;
+      margin: 8px 0;
+      text-align: left;
+    }
+
+    .pieces {
+      color: #666;
+      font-size: 14px;
+      font-style: italic;
+      margin: 8px 0;
+    }
+
+    .sub-items {
+      margin-top: 12px;
+      
+      p {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+
+      ul {
+        list-style-type: none;
+        padding-left: 12px;
+        margin: 0;
+
+        li {
+          color: #666;
+          font-size: 14px;
+          margin: 2px 0;
+          &:before {
+            content: "•";
+            color: #e44d26;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+}

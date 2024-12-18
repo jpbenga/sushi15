@@ -1,0 +1,10 @@
+<div class="category-card" (click)="onSelect()">
+  <div class="card-content">
+    <h3 class="title">{{ title }}</h3>
+    <p class="subtitle" *ngIf="subtitle">{{ subtitle }}</p>
+    <div class="items-preview" *ngIf="items.length">
+      <p class="item" *ngFor="let item of items.slice(0, 3)">{{ item.name }}</p>
+      <p class="more" *ngIf="items.length > 3">+{{ items.length - 3 }} autres</p>
+    </div>
+  </div>
+</div>

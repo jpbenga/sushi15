@@ -1,0 +1,28 @@
+<div class="menu-container">
+  <ng-container *ngFor="let category of categories$ | async">
+    <section class="menu-section">
+      <h2 class="section-title">{{category[1].title}}</h2>
+      <div class="subcategories-grid">
+        <ng-container *ngFor="let subcategory of getSubcategories(category[0])">
+          <app-category-card
+            [categoryId]="category[0]"
+            [subcategoryId]="subcategory[0]"
+            [title]="subcategory[1].title"
+            [subtitle]="subcategory[1].subtitle"
+            [items]="subcategory[1].items"
+            (selected)="showSubcategory(category[0], subcategory[0])"
+          ></app-category-card>
+        </ng-container>
+      </div>
+    </section>
+  </ng-container>
+
+  <ng-container *ngIf="selectedCategory$ | async as selectedCategory">
+    <ng-container *ngIf="getSelectedCategoryDetails(selectedCategory) as categoryDetails">
+      <app-category-details
+        [category]="categoryDetails"
+        (close)="closeDetails()"
+      ></app-category-details>
+    </ng-container>
+  </ng-container>
+</div>

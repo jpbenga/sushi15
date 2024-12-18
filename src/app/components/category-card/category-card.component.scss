@@ -1,0 +1,50 @@
+.category-card {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+  padding: 20px;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.subtitle {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+.items-preview {
+  margin-top: 8px;
+}
+
+.item {
+  margin: 4px 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.more {
+  color: #888;
+  font-size: 0.9rem;
+  font-style: italic;
+}

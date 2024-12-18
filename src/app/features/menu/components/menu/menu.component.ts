@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CategoryCardComponent } from '../../components/category-card/category-card.component';
-import { CategoryDetailsComponent } from '../../components/category-details/category-details.component';
-import { MenuCategory, MenuSubCategory } from '../../core/models/menu.interface';
-import { MenuService } from '../../core/services/menu.service';
+import { CategoryCardComponent } from '../../../../components/category-card/category-card.component';
+import { CategoryDetailsComponent } from '../../../../components/category-details/category-details.component';
+import { MenuService } from '../../../../core/services/menu.service';
 import { Observable } from 'rxjs';
+import { MenuCategory, MenuSubCategory } from '../../../../core/models/menu.interface';
 
 @Component({
   selector: 'app-menu',
