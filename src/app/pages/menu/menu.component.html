@@ -1,44 +1,17 @@
-<div class="menu-page">
-  <!-- Hero Banner -->
-  <div class="hero-banner">
-    <h1 class="menu-title">Notre Carte</h1>
-  </div>
-
-  <!-- Menu Content -->
-  <div class="menu-content">
-    <ng-container *ngIf="(selectedCategory$ | async) === null">
-      <div class="menu-grid">
-        <ng-container *ngIf="categories$ | async as categories">
-          <ng-container *ngFor="let category of categories">
-            <ng-container *ngFor="let subcategory of getSubcategories(category[0])">
-              <app-category-card
-                [categoryId]="category[0]"
-                [subcategoryId]="subcategory[0]"
-                [title]="subcategory[1].title"
-                [subtitle]="subcategory[1].subtitle"
-                [items]="subcategory[1].items"
-                [supplements]="subcategory[1].supplements"
-                (selected)="showSubcategory(category[0], subcategory[0])">
-              </app-category-card>
-            </ng-container>
-          </ng-container>
+<div class="menu-container">
+  <ng-container *ngFor="let category of categories$ | async">
+    <section class="menu-section" [class]="category[0]">
+      <h2>{{ category[1].title }}</h2>
+      <div class="cards-container">
+        <ng-container *ngFor="let subcategory of getSubcategoriesByCategory(category[0])">
+          <div class="menu-card" (click)="navigateToSubcategory(subcategory[0])">
+            <h3>{{ subcategory[1].title }}</h3>
+            <p *ngIf="subcategory[1].subtitle" class="subtitle">
+              {{ subcategory[1].subtitle }}
+            </p>
+          </div>
         </ng-container>
       </div>
-    </ng-container>
-
-    <!-- Category Details View -->
-    <ng-container *ngIf="selectedCategory$ | async as selectedCategoryId">
-      <div class="category-details-container">
-        <button class="back-button" (click)="closeDetails()">
-          ← Retour au menu
-        </button>
-        <ng-container *ngIf="getSelectedCategoryDetails(selectedCategoryId) as categoryData">
-          <app-category-details
-            [category]="categoryData"
-            (close)="closeDetails()">
-          </app-category-details>
-        </ng-container>
-      </div>
-    </ng-container>
-  </div>
+    </section>
+  </ng-container>
 </div>

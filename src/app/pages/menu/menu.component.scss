@@ -37,103 +37,196 @@
   }
 }
 
-.menu-content {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.menu-sections {
+.menu-container {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  padding-bottom: 4rem;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #000;
+  min-height: 100vh;
+  position: relative;
+}
+
+.menu-grid {
+  &.blur-background {
+    filter: blur(5px);
+    pointer-events: none;
+  }
 }
 
 .menu-section {
+  border: 2px solid #333;
+  border-radius: 12px;
+  padding: 2rem;
+  background-color: rgba(40, 40, 40, 0.5);
+  backdrop-filter: blur(10px);
+  
   h2 {
-    color: #ff4040;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: 2rem;
+    margin-bottom: 2rem;
     text-align: center;
-    position: relative;
+    color: #ff4040;
     text-transform: uppercase;
     font-weight: bold;
-    
+    position: relative;
+
     &::after {
       content: '';
       position: absolute;
-      bottom: -15px;
+      bottom: -10px;
       left: 50%;
       transform: translateX(-50%);
-      width: 150px;
-      height: 3px;
+      width: 100px;
+      height: 2px;
       background: #ff4040;
     }
   }
 }
 
-.menu-grid {
+.cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  padding: 0 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
 }
 
-app-category-card {
-  display: block;
-  background: #000;
+.menu-card {
+  background: #1a1a1a;
+  border: 1px solid #333;
   border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
   cursor: pointer;
 
   &:hover {
     transform: translateY(-5px);
+    border-color: #ff4040;
     box-shadow: 0 5px 15px rgba(255, 64, 64, 0.2);
   }
 
-  ::ng-deep {
-    .card-content {
-      padding: 1.5rem;
-      background: #000;
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #ff4040;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    color: #999;
+    font-size: 0.9rem;
+    margin: 0;
+    font-style: italic;
+  }
+}
+
+// Vue détaillée
+.subcategory-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.subcategory-details {
+  width: 90%;
+  max-width: 600px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 2rem;
+  position: relative;
+
+  h2 {
+    color: #ff4040;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  .close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: #ff4040;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    
+    &:hover {
       color: #fff;
-
-      h2 {
-        color: #ff4040;
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-        text-align: left;
-        text-transform: none;
-        font-weight: normal;
-
-        &::after {
-          display: none;
-        }
-      }
-
-      p {
-        color: #999;
-        font-size: 0.9rem;
-        line-height: 1.4;
-      }
-    }
-
-    .card-image {
-      width: 100%;
-      height: 200px;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
     }
   }
+}
+
+.items-list {
+  .menu-item {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+
+      .item-name {
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: 500;
+      }
+
+      .item-price {
+        color: #ff4040;
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+    }
+
+    .item-description {
+      color: #888;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  }
+}
+
+// Sections spécifiques
+.entrees {
+  border-color: #ff4040;
+  background: linear-gradient(145deg, rgba(40, 40, 40, 0.8), rgba(255, 64, 64, 0.1));
+}
+
+.sushis {
+  border-color: #ff4040;
+  background: linear-gradient(145deg, rgba(40, 40, 40, 0.8), rgba(255, 64, 64, 0.1));
+}
+
+.plats {
+  border-color: #ff4040;
+  background: linear-gradient(145deg, rgba(40, 40, 40, 0.8), rgba(255, 64, 64, 0.1));
+}
+
+.desserts {
+  border-color: #ff4040;
+  background: linear-gradient(145deg, rgba(40, 40, 40, 0.8), rgba(255, 64, 64, 0.1));
 }
 
 .category-details-container {

@@ -6,8 +6,17 @@
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a>
       </li>
       <li class="nav-item has-dropdown">
-        <a routerLink="/menu" routerLinkActive="active">Menu </a>
+        <a routerLink="/menu" routerLinkActive="active">Carte </a>
         <div class="dropdown-menu">
+          <div>
+            <h3 class="section-title">Entrées</h3>
+            <a routerLink="/menu" [queryParams]="{category: 'soupes'}">Soupes</a>
+            <a routerLink="/menu" [queryParams]="{category: 'salades'}">Salades</a>
+            <a routerLink="/menu" [queryParams]="{category: 'nems'}">Nems</a>
+            <a routerLink="/menu" [queryParams]="{category: 'gyouza'}">Gyouza</a>
+            <a routerLink="/menu" [queryParams]="{category: 'tempura'}">Tempura</a>
+            <a routerLink="/menu" [queryParams]="{category: 'yakitoris'}">Yakitoris</a>
+          </div>
           <div>
             <h3 class="section-title">Sushis & Sashimis</h3>
             <a routerLink="/menu" [queryParams]="{category: 'nigiri'}">Nigiri</a>
@@ -21,28 +30,19 @@
             <a routerLink="/menu" [queryParams]="{category: 'crunchy'}">Crunchy</a>
           </div>
           <div>
-            <h3 class="section-title">Entrées</h3>
-            <a routerLink="/menu" [queryParams]="{category: 'soupes'}">Soupes</a>
-            <a routerLink="/menu" [queryParams]="{category: 'salades'}">Salades</a>
-            <a routerLink="/menu" [queryParams]="{category: 'nems'}">Nems</a>
-            <a routerLink="/menu" [queryParams]="{category: 'gyouza'}">Gyouza</a>
-            <a routerLink="/menu" [queryParams]="{category: 'tempura'}">Tempura</a>
-            <a routerLink="/menu" [queryParams]="{category: 'yakitoris'}">Yakitoris</a>
-          </div>
-          <div>
             <h3 class="section-title">Plats & Bowls</h3>
             <a routerLink="/menu" [queryParams]="{category: 'chirashi'}">Chirashi</a>
             <a routerLink="/menu" [queryParams]="{category: 'poke-bowl'}">Poke Bowl</a>
             <a routerLink="/menu" [queryParams]="{category: 'nouilles'}">Nouilles Udon & Soba</a>
             <a routerLink="/menu" [queryParams]="{category: 'new-rolls'}">New Rolls</a>
           </div>
+          <div>
+            <h3 class="section-title">Desserts & Boissons</h3>
+            <a routerLink="/menu" [queryParams]="{category: 'desserts'}">Desserts</a>
+            <a routerLink="/menu" [queryParams]="{category: 'thes'}">Thés</a>
+            <a routerLink="/menu" [queryParams]="{category: 'boissons'}">Boissons</a>
+          </div>
         </div>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/specialites" routerLinkActive="active">Spécialités</a>
-      </li>
-      <li class="nav-item">
-        <a routerLink="/contact" routerLinkActive="active">Contact</a>
       </li>
     </ul>
   </div>

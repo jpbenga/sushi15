@@ -39,3 +39,8 @@ export interface Supplements {
   price: number;
   options: string[];
 }
+
+export interface SelectedSubcategory {
+  id: string;
+  details: MenuSubCategory;
+}

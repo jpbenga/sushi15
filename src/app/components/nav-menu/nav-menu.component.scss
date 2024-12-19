@@ -80,7 +80,7 @@
       left: 50%;
       transform: translateX(-50%) translateY(-10px);
       background: rgba(0, 0, 0, 0.95);
-      width: 600px;
+      width: 800px;
       padding: 2rem;
       border-radius: 8px;
       opacity: 0;
@@ -88,8 +88,8 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.5rem;
       z-index: 100;
       
       &::before {

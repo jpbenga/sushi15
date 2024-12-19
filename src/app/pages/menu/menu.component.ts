@@ -1,73 +1,36 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CategoryCardComponent } from '../../components/category-card/category-card.component';
-import { CategoryDetailsComponent } from '../../components/category-details/category-details.component';
-import { MenuCategory, MenuSubCategory } from '../../core/models/menu.interface';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuService } from '../../core/services/menu.service';
+import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
+import { MenuCategory } from '../../core/models/menu.interface';
 
 @Component({
   selector: 'app-menu',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    CategoryCardComponent,
-    CategoryDetailsComponent
-  ],
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  standalone: true,
+  imports: [CommonModule]
 })
 export class MenuComponent implements OnInit {
   categories$!: Observable<[string, MenuCategory][]>;
-  selectedCategory$!: Observable<string | null>;
 
   constructor(
     private readonly menuService: MenuService,
-    private readonly route: ActivatedRoute,
-    private readonly router: Router
-  ) {
-    this.initializeObservables();
-  }
+    private router: Router
+  ) {}
 
-  private initializeObservables(): void {
+  ngOnInit() {
     this.categories$ = this.menuService.getCategories();
-    this.selectedCategory$ = this.menuService.selectedCategory$;
   }
 
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      const category = params['category'];
-      if (category) {
-        this.menuService.setSelectedCategory(category);
-      }
-    });
+  navigateToSubcategory(subcategoryId: string): void {
+    if (subcategoryId) {
+      this.router.navigate(['/menu/items'], { queryParams: { category: subcategoryId } });
+    }
   }
 
-  getSubcategories(categoryId: string): [string, MenuSubCategory][] {
+  getSubcategoriesByCategory(categoryId: string) {
     return this.menuService.getSubcategoriesByCategory(categoryId);
-  }
-
-  showSubcategory(categoryId: string, subcategoryId: string): void {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { category: categoryId, subcategory: subcategoryId },
-      queryParamsHandling: 'merge'
-    });
-  }
-
-  closeDetails(): void {
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { category: null, subcategory: null },
-      queryParamsHandling: 'merge'
-    });
-    this.menuService.setSelectedCategory(null);
-  }
-
-  getSelectedCategoryDetails(categoryId: string): MenuCategory | undefined {
-    return this.menuService.getCategoryById(categoryId);
   }
 }

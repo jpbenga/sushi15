@@ -1,0 +1,26 @@
+<div class="detail-container" *ngIf="subcategory?.details">
+  <div class="header">
+    <h1>{{ subcategory?.details?.title }}</h1>
+    <p *ngIf="subcategory?.details?.subtitle" class="subtitle">{{ subcategory?.details?.subtitle }}</p>
+  </div>
+
+  <div class="products-list" *ngIf="subcategory?.details?.items?.length">
+    <div class="product-item" *ngFor="let item of subcategory?.details?.items">
+      <div class="product-info">
+        <h3>{{ item?.name }}</h3>
+        <p *ngIf="item?.description" class="description">{{ item?.description }}</p>
+        <p *ngIf="item?.pieces" class="pieces">{{ item?.pieces }} pièces</p>
+      </div>
+      <div class="product-price">{{ item?.price?.toFixed(2) }}€</div>
+    </div>
+  </div>
+
+  <div class="supplements" *ngIf="subcategory?.details?.supplements?.options?.length">
+    <h3>Suppléments</h3>
+    <ul>
+      <li *ngFor="let option of subcategory?.details?.supplements?.options">
+        {{ option }} (+{{ subcategory?.details?.supplements?.price?.toFixed(2) }}€)
+      </li>
+    </ul>
+  </div>
+</div>
